@@ -31,6 +31,9 @@ function formDataName(event) {
   userInfo.name = nameInput;
   let nameChatAnswer = document.createElement('p');
   nameChatAnswer.innerHTML = nameInput;
+  let id = document.createAttribute('id');
+  id.value = 'answerOne';
+  nameChatAnswer.setAttributeNode(id)
   chatHistory.appendChild(nameChatAnswer);
 
   let nameResponse = 'Nice to meet you, ' + nameInput + '. I will be helping you find a product today. What are you interested in? We have: ' + categories[0] + ' and ' + categories[1] + '. ';
@@ -38,8 +41,9 @@ function formDataName(event) {
   nameResponseBox.innerHTML = nameResponse;
   chatHistory.appendChild(nameResponseBox);
 
-  answers.placeholder = 'Type phones or drones';
-  // $('#botForm').hide();
+  // answers.placeholder = 'Type phones or drones';
+
+  $('#firstQuestion').hide();
   $('#secondQuestion').show();
   form.reset();
 }
@@ -48,23 +52,23 @@ function formDataName(event) {
 //Second Event Listener
 form.addEventListener('submit', formDataCategory);
 
-//Q2
+// Q2
 function formDataCategory(event) {
   event.preventDefault();
-  $('#secondQuestion').show();
   console.log(event.target.phonesDrones.value);
   let categoryInput = event.target.phonesDrones.value;
   userInfo.categoryOfInterest = categoryInput;
+  console.log(userInfo.categoryOfInterest);
   let categoryChatAnswer = document.createElement('p');
   categoryChatAnswer.innerHTML = categoryInput;
   chatHistory.appendChild(categoryChatAnswer);
 
-  let categoryResponse = 'Great, we have two types of drones available. The Bebop and the Bebop 2. Which would you like to learn about?';
-  let categoryResponseBox = document.createElement('p');
-  categoryResponseBox.innerHTML = categoryResponse;
-  chatHistory.appendChild(categoryResponseBox);
-
-  answers.placeholder = 'Type Bebop or Bebop 2';
+  // let categoryResponse = 'Great, we have two types of drones available. The Bebop and the Bebop 2. Which would you like to learn about?';
+  // let categoryResponseBox = document.createElement('p');
+  // categoryResponseBox.innerHTML = categoryResponse;
+  // chatHistory.appendChild(categoryResponseBox);
+  //
+  // answers.placeholder = 'Type Bebop or Bebop 2';
   $('#firstQuestion').hide();
   $('#secondQuestion').show();
   form.reset();
