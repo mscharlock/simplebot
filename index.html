@@ -3,16 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title>Groverbot</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
     <section id="groverbot">
       <section id="chatHistory"></section>
       <form id="botForm">
-        <fieldset>
+        <fieldset id="firstQuestion">
           <label for"answerBox">Respond to Groverbot Here:</label>
-          <input type="text" name="answerBox" placeholder="My name is...">
-          <button id="submitBtn" type="submit">Chat</button>
+          <input type="text" name="answerBox" placeholder="My name is..." id="answers">
         </fieldset>
+
+        <fieldset id="secondQuestion">
+          <label for="phonesDrones">Would you like to know about renting phones or drones from Grover?</label>
+          <input type="text" name="phonesDrones" placeholder="type phones or drones">
+        </fieldset>
+
+        <button id="submitBtn" type="submit">Chat</button>
       </form>
     </section>
 

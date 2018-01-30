@@ -2,8 +2,7 @@
 //Global variables
 const categories = ['drones', 'phones', 'gaming systems', 'computers', 'smart home gadgets', 'wearables'];
 
-// const drones = ['drone BEBOP', 'drone BEBOP 2'];
-
+let answers = document.getElementById('answers');
 let form = document.getElementById('botForm');
 let chatHistory = document.getElementById('chatHistory');
 let userInfo = {
@@ -16,31 +15,20 @@ let firstQ = 'Hello! I am the groverbot! What is your name?';
 
 //Render the first question - fyi, I'm just reminding myself about how to render here
 let kickOffPara = document.createElement('p');
-kickOffPara.innerHTML = firstQ
+kickOffPara.innerHTML = firstQ;
 chatHistory.appendChild(kickOffPara);
 
-//Form things
+//First Event Listener
 form.addEventListener('submit', formDataName);
 
+$('#secondQuestion').hide();
 
-function createRadioButton(value, name) {
-  var radioHtml = '<input type="radio" name=' + name +' value=' + value +'/>';
-
-  var radioDiv = document.createElement('div');
-  radioDiv.innerHTML = radioHtml;
-
-  return radioDiv.firstChild;
-}
-
-let phoneButton = createRadioButton('phones', 'phone');
-let droneButton = createRadioButton('drones', 'drone');
-
-
+//Q1
 function formDataName(event) {
   event.preventDefault();
   console.log(event.target.answerBox.value);
   let nameInput = event.target.answerBox.value;
-  userInfo.name = nameInput
+  userInfo.name = nameInput;
   let nameChatAnswer = document.createElement('p');
   nameChatAnswer.innerHTML = nameInput;
   chatHistory.appendChild(nameChatAnswer);
@@ -50,17 +38,52 @@ function formDataName(event) {
   nameResponseBox.innerHTML = nameResponse;
   chatHistory.appendChild(nameResponseBox);
 
-  chatHistory.appendChild(phoneButton);
-  chatHistory.appendChild(droneButton);
-  //
-  // chatHistory.appendChild(chatForm);
-
+  answers.placeholder = 'Type phones or drones';
+  // $('#botForm').hide();
+  $('#secondQuestion').show();
   form.reset();
 }
 
-function renderChat() {
-  chatHistory.innerHTML = chatData;
+
+//Second Event Listener
+form.addEventListener('submit', formDataCategory);
+
+//Q2
+function formDataCategory(event) {
+  event.preventDefault();
+  $('#secondQuestion').show();
+  console.log(event.target.phonesDrones.value);
+  let categoryInput = event.target.phonesDrones.value;
+  userInfo.categoryOfInterest = categoryInput;
+  let categoryChatAnswer = document.createElement('p');
+  categoryChatAnswer.innerHTML = categoryInput;
+  chatHistory.appendChild(categoryChatAnswer);
+
+  let categoryResponse = 'Great, we have two types of drones available. The Bebop and the Bebop 2. Which would you like to learn about?';
+  let categoryResponseBox = document.createElement('p');
+  categoryResponseBox.innerHTML = categoryResponse;
+  chatHistory.appendChild(categoryResponseBox);
+
+  answers.placeholder = 'Type Bebop or Bebop 2';
+  $('#firstQuestion').hide();
+  $('#secondQuestion').show();
+  form.reset();
 }
+
+
+
+//Put chat in the right place
+// function renderChat() {
+//   chatHistory.innerHTML = chatData;
+// }
+
+// form.removeEventListener('submit', formDataName);
+//
+// form.addEventListener('submit', formDataDrones);
+//
+// function formDataDrones() {
+//   console.log('boogie woogie');
+// }
 
 
 //Q2
@@ -106,8 +129,3 @@ function renderChat() {
 //   }
 //   }
 // }
-
-// initQ();
-// selectACategory();
-
-//Render dom things
