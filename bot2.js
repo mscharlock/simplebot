@@ -22,6 +22,20 @@ chatHistory.appendChild(kickOffPara);
 //Form things
 form.addEventListener('submit', formDataName);
 
+
+function createRadioButton(value, name) {
+  var radioHtml = '<input type="radio" name=' + name +' value=' + value +'/>';
+
+  var radioDiv = document.createElement('div');
+  radioDiv.innerHTML = radioHtml;
+
+  return radioDiv.firstChild;
+}
+
+let phoneButton = createRadioButton('phones', 'phone');
+let droneButton = createRadioButton('drones', 'drone');
+
+
 function formDataName(event) {
   event.preventDefault();
   console.log(event.target.answerBox.value);
@@ -30,6 +44,17 @@ function formDataName(event) {
   let nameChatAnswer = document.createElement('p');
   nameChatAnswer.innerHTML = nameInput;
   chatHistory.appendChild(nameChatAnswer);
+
+  let nameResponse = 'Nice to meet you, ' + nameInput + '. I will be helping you find a product today. What are you interested in? We have: ' + categories[0] + ' and ' + categories[1] + '. ';
+  let nameResponseBox = document.createElement('p');
+  nameResponseBox.innerHTML = nameResponse;
+  chatHistory.appendChild(nameResponseBox);
+
+  chatHistory.appendChild(phoneButton);
+  chatHistory.appendChild(droneButton);
+  //
+  // chatHistory.appendChild(chatForm);
+
   form.reset();
 }
 
@@ -37,17 +62,7 @@ function renderChat() {
   chatHistory.innerHTML = chatData;
 }
 
-//QUESTIONS
-//Q1
-function initQ() {
-  'Hello! I am the groverbot! What is your name?';
-  userInfo.name = name;
 
-  alert('Nice to meet you, ' + name + '. I will be helping you find a product today. What are you interested in? We have: ' + categories[0] + ' and ' + categories[1] + '. ');
-}
-
-
-initQ();
 //Q2
 // function selectACategory() {
 //   var selectedCategory  = prompt('Tell me, what kind of tech would you be interested in renting from Grover?');
