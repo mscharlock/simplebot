@@ -1,7 +1,8 @@
 'use strict';
+//In the interest of time, I've only programmed answers for phones and drones. I also did not put in alternative answers or spellings (so there is only one correct answer to each question).
 
 //Global variables
-const categories = ['drones', 'gaming systems', 'phones', 'tablets', 'computers', 'smart home gadgets', 'wearables'];
+const categories = ['drones', 'phones', 'gaming systems', 'computers', 'smart home gadgets', 'wearables'];
 
 const drones = ['drone BEBOP', 'drone BEBOP 2'];
 
@@ -22,7 +23,7 @@ function initQ() {
   let name = prompt('Hello! I am the groverbot! What is your name?');
   userInfo.name = name;
 
-  alert('Nice to meet you, ' + name + '. I will be helping you find a product today. What are you interested in? We have: ' + categories);
+  alert('Nice to meet you, ' + name + '. I will be helping you find a product today. What are you interested in? We have: ' + categories[0] + ' and ' + categories[1] + '. ');
 }
 
 //Q2
@@ -33,12 +34,11 @@ function selectACategory() {
   userInfo.categoryOfInterest = selectedCategory;
 
   switch (lowerCaseCat) {
-  //I would probably do something similar to try to capture a variety of responses for each of the categories, but here's just one example:
-  case 'drones' || 'drone' || 'drone camera' || 'flying camera':
+  case 'drones':
     alert('Great! We have the following kinds of drones available: ' + drones[0] + ' or ' + drones[1]);
     selectADrone();
     break;
-  case 'phones' || 'tablets':
+  case 'phones':
     alert('Excellent, we have many phones and tablets available.');
     selectAPhone();
     break;
@@ -59,7 +59,7 @@ function selectADrone() {
     alert('Great choice. This drone costs 14.99 Euro/month to rent.');
     break;
   }
-  case 'drone bebop 2' || 'drone bebop two': {
+  case 'drone bebop 2': {
     alert('Great selection! This drone costs 20.99 Euro/month to rent.');
     break;
   }
@@ -81,8 +81,8 @@ function selectAPhone() {
     alert('Great choice. We offer the Galaxy S8 for 44.99 Euro/month or the S8+ for 49.99/month');
     break;
   }
-  case 'iphone' || 'apple': {
-    var iPhoneChoice = prompt('We love Apple products too. What is most important to you - tons of space, a low price, or having the top-of-the-line model?');
+  case 'iphone': {
+    var iPhoneChoice = prompt('We love Apple products too. What is most important to you - having lots of space, a low price, or having the top-of-the-line model?');
     phoneChoice = iPhoneChoice.toLowerCase();
     iPhoneDecision();
     break;
@@ -95,47 +95,27 @@ function selectAPhone() {
 }
 
 //Q4-A : iPhone Choice
-function iPhoneDecision(type) {
-  var options = {
-    'space': function() {
-      return alert('I think you should get the iPhone 7 128GB. You can rent one through Grover for only 44.99 Euro/month.');
-    },
-    'low price': function() {
-      return alert('I think you would like the iPhone 7 32GB. It has great features and the lowest monthly cost of any of our phone plans, at 39.99 Euro/month.');
-    },
-    default: function() {
-      alert('Can you repeat that? I want to make sure I give you a great recommendation!');
-      iPhoneDecision();
-    }
-  };
-  return options[type]();
+function iPhoneDecision() {
+  switch(phoneChoice) {
+  case 'lots of space': {
+    alert('I think you should get the iPhone 7 128GB. You can rent one through Grover for only 44.99 Euro/month.');
+    break;
+  }
+  case 'low price': {
+    alert('I think you would like the iPhone 7 32GB. It has great features and the lowest monthly cost of any of our phone plans, at 39.99 Euro/month.');
+    break;
+  }
+  case 'top-of-the-line': {
+    alert('Treat yourself! Enjoy the most space and features of any of our phones, by renting the iPhone 7 Plus 128 GB for just 49.99 Euro/month.');
+    break;
+  }
+  default: {
+    'Can you repeat that? I want to make sure I give you a great recommendation!';
+    iPhoneDecision();
+    break;
+  }
+  }
 }
-
-var phone = iPhoneDecision('space');
-
-//
-//
-//
-//   switch(phoneChoice) {
-//   case 'space' ||'tons of space': {
-//     alert('I think you should get the iPhone 7 128GB. You can rent one through Grover for only 44.99 Euro/month.');
-//     break;
-//   }
-//   case 'low price': {
-//     alert('I think you would like the iPhone 7 32GB. It has great features and the lowest monthly cost of any of our phone plans, at 39.99 Euro/month.');
-//     break;
-//   }
-//   case 'top-of-the-line': {
-//     alert('Treat yourself! Enjoy the most space and features of any of our phones, by renting the iPhone 7 Plus 128 GB for just 49.99 Euro/month.');
-//     break;
-//   }
-//   default: {
-//     'Can you repeat that? I want to make sure I give you a great recommendation!';
-//     iPhoneDecision();
-//     break;
-//   }
-//   }
-// }
 
 //Run question functions
 initQ();
