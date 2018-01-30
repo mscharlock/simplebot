@@ -95,27 +95,47 @@ function selectAPhone() {
 }
 
 //Q4-A : iPhone Choice
-function iPhoneDecision(phoneChoice) {
-  switch(phoneChoice) {
-  case 'space' ||'tons of space': {
-    alert('I think you should get the iPhone 7 128GB. You can rent one through Grover for only 44.99 Euro/month.');
-    break;
-  }
-  case 'low price': {
-    alert('I think you would like the iPhone 7 32GB. It has great features and the lowest monthly cost of any of our phone plans, at 39.99 Euro/month.');
-    break;
-  }
-  case 'top-of-the-line': {
-    alert('Treat yourself! Enjoy the most space and features of any of our phones, by renting the iPhone 7 Plus 128 GB for just 49.99 Euro/month.');
-    break;
-  }
-  default: {
-    'Can you repeat that? I want to make sure I give you a great recommendation!';
-    iPhoneDecision();
-    break;
-  }
-  }
+function iPhoneDecision(type) {
+  var options = {
+    'space': function() {
+      return alert('I think you should get the iPhone 7 128GB. You can rent one through Grover for only 44.99 Euro/month.');
+    },
+    'low price': function() {
+      return alert('I think you would like the iPhone 7 32GB. It has great features and the lowest monthly cost of any of our phone plans, at 39.99 Euro/month.');
+    },
+    default: function() {
+      alert('Can you repeat that? I want to make sure I give you a great recommendation!');
+      iPhoneDecision();
+    }
+  };
+  return options[type]();
 }
+
+var phone = iPhoneDecision('space');
+
+//
+//
+//
+//   switch(phoneChoice) {
+//   case 'space' ||'tons of space': {
+//     alert('I think you should get the iPhone 7 128GB. You can rent one through Grover for only 44.99 Euro/month.');
+//     break;
+//   }
+//   case 'low price': {
+//     alert('I think you would like the iPhone 7 32GB. It has great features and the lowest monthly cost of any of our phone plans, at 39.99 Euro/month.');
+//     break;
+//   }
+//   case 'top-of-the-line': {
+//     alert('Treat yourself! Enjoy the most space and features of any of our phones, by renting the iPhone 7 Plus 128 GB for just 49.99 Euro/month.');
+//     break;
+//   }
+//   default: {
+//     'Can you repeat that? I want to make sure I give you a great recommendation!';
+//     iPhoneDecision();
+//     break;
+//   }
+//   }
+// }
 
 //Run question functions
 initQ();
