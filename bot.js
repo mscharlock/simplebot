@@ -42,17 +42,6 @@ function selectACategory() {
     alert('Excellent, we have many phones and tablets available.');
     selectAPhone();
     break;
-
-  //NOTE: In the interest of time, I'm just doing phones and drones in this exercise, but here's some sample copy for the other categories:
-  // case 'wearables':
-  //   alert('We have quite a few wearables to choose from.');
-  //   break;
-  // case 'gaming systems':
-  //   alert('It is your lucky day, we carry a variety of top of the line gaming systems!');
-  //   break;
-  // case 'computers':
-  //   alert('Great, we have a ton of computers to choose from. Let\'s find one you\'ll love.');
-  //   break;
   default:
     alert('Sorry, I could not understand you, please try again.');
     selectACategory();
@@ -65,11 +54,20 @@ function selectADrone() {
   userInfo.productOfInterest = kindOfDrone;
   var lowerCaseDrone = kindOfDrone.toLowerCase();
 
-  if(lowerCaseDrone === 'drone bebop') {
+  switch (lowerCaseDrone) {
+  case 'drone bebop': {
     alert('Great choice. This drone costs 14.99 Euro/month to rent.');
+    break;
   }
-  if(lowerCaseDrone === 'drone bebop 2' || lowerCaseDrone === 'drone bebop two') {
+  case 'drone bebop 2' || 'drone bebop two': {
     alert('Great selection! This drone costs 20.99 Euro/month to rent.');
+    break;
+  }
+  default: {
+    'Sorry, I did not understand you';
+    selectADrone();
+    break;
+  }
   }
 }
 
@@ -78,30 +76,44 @@ function selectAPhone() {
   let kindOfPhone = prompt('Do you prefer a Samsung or an iPhone?');
   var lowerCasePhone = kindOfPhone.toLowerCase();
 
-  if(lowerCasePhone === 'samsung') {
+  switch(lowerCasePhone) {
+  case 'samsung': {
     alert('Great choice. We offer the Galaxy S8 for 44.99 Euro/month or the S8+ for 49.99/month');
+    break;
   }
-  if(lowerCasePhone === 'iphone') {
+  case 'iphone' || 'apple': {
     var iPhoneChoice = prompt('We love Apple products too. What is most important to you - tons of space, a low price, or having the top-of-the-line model?');
     phoneChoice = iPhoneChoice.toLowerCase();
-
     iPhoneDecision();
-  } else {
+    break;
+  }
+  default: {
     alert('Pardon? Try typing another answer');
     selectAPhone();
+  }
   }
 }
 
 //Q4-A : iPhone Choice
-function iPhoneDecision() {
-  if (phoneChoice === 'space' || phoneChoice === 'tons of space') {
+function iPhoneDecision(phoneChoice) {
+  switch(phoneChoice) {
+  case 'space' ||'tons of space': {
     alert('I think you should get the iPhone 7 128GB. You can rent one through Grover for only 44.99 Euro/month.');
+    break;
   }
-  if(phoneChoice === 'low price' || phoneChoice === 'price' || phoneChoice === 'inexpensive' || phoneChoice === 'cheap') {
+  case 'low price': {
     alert('I think you would like the iPhone 7 32GB. It has great features and the lowest monthly cost of any of our phone plans, at 39.99 Euro/month.');
+    break;
   }
-  if(phoneChoice === 'top-of-the-line' || phoneChoice === 'top of the line' || phoneChoice === 'luxury' || phoneChoice === 'best') {
+  case 'top-of-the-line': {
     alert('Treat yourself! Enjoy the most space and features of any of our phones, by renting the iPhone 7 Plus 128 GB for just 49.99 Euro/month.');
+    break;
+  }
+  default: {
+    'Can you repeat that? I want to make sure I give you a great recommendation!';
+    iPhoneDecision();
+    break;
+  }
   }
 }
 
