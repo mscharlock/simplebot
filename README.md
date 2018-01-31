@@ -13,7 +13,7 @@ All conversations should be recorded.
 ## How I Approached Building This
 - First, get a working prototype up of a question/response system using prompts (see bot.js)
 - Get a working question/response system for multiple categories and nested conditions using prompts (also in bot.js)
-- Reduce protoype to the basic form of the dialog, but convert the dialog into updates to the DOM instead of prompts
+- Reduce protoype to the basic form of the dialog, but convert the dialog into updates to the DOM instead of prompts (see bot2.js)
 
 ## Plan Going Forward:
 - Instead of using prompts, set up an event listener on the form.

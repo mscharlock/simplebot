@@ -1,9 +1,7 @@
 'use strict';
 //Global variables
 const categories = ['drones', 'phones', 'gaming systems', 'computers', 'smart home gadgets', 'wearables'];
-
-let answers = document.getElementById('answers');
-let form = document.getElementById('botForm');
+let hello = 'Hello! I am the groverbot! What is your name?';
 let chatHistory = document.getElementById('chatHistory');
 let userInfo = {
   name: '',
@@ -11,67 +9,71 @@ let userInfo = {
   productOfInterest: '',
   date: new Date(),
 };
-let firstQ = 'Hello! I am the groverbot! What is your name?';
 
-//Render the first question - fyi, I'm just reminding myself about how to render here
+//Render the bot's introduction (hello)
 let kickOffPara = document.createElement('p');
-kickOffPara.innerHTML = firstQ;
+kickOffPara.innerHTML = hello;
 chatHistory.appendChild(kickOffPara);
 
 //First Event Listener
-form.addEventListener('submit', formDataName);
+let firstQ = document.getElementById('botForm');
+firstQ.addEventListener('submit', whatsYourName);
 
+//Hide the second question
 $('#secondQuestion').hide();
 
 //Q1
-function formDataName(event) {
+function whatsYourName(event) {
   event.preventDefault();
-  console.log(event.target.answerBox.value);
+
+//Grab the answerBox, append user's answer with id of answerOne to the DOM
   let nameInput = event.target.answerBox.value;
+  let nameAnswer = document.createElement('p');
+  nameAnswer.innerHTML = nameInput;
   userInfo.name = nameInput;
-  let nameChatAnswer = document.createElement('p');
-  nameChatAnswer.innerHTML = nameInput;
+
   let id = document.createAttribute('id');
   id.value = 'answerOne';
-  nameChatAnswer.setAttributeNode(id)
-  chatHistory.appendChild(nameChatAnswer);
+  nameAnswer.setAttributeNode(id);
+  chatHistory.appendChild(nameAnswer);
 
   let nameResponse = 'Nice to meet you, ' + nameInput + '. I will be helping you find a product today. What are you interested in? We have: ' + categories[0] + ' and ' + categories[1] + '. ';
   let nameResponseBox = document.createElement('p');
   nameResponseBox.innerHTML = nameResponse;
   chatHistory.appendChild(nameResponseBox);
 
-  // answers.placeholder = 'Type phones or drones';
-
-  $('#firstQuestion').hide();
-  $('#secondQuestion').show();
-  form.reset();
+//hide the first Q, show the second Q
+  $('#firstQuestion').show();
+  $('#secondQuestion').hide();
+  firstQ.reset();
 }
 
-
 //Second Event Listener
-form.addEventListener('submit', formDataCategory);
+let secondQ = document.getElementById('secondQuestion');
+secondQ.addEventListener('submit', whatsYourCategory);
 
 // Q2
-function formDataCategory(event) {
+function whatsYourCategory(event) {
   event.preventDefault();
   console.log(event.target.phonesDrones.value);
+
   let categoryInput = event.target.phonesDrones.value;
   userInfo.categoryOfInterest = categoryInput;
   console.log(userInfo.categoryOfInterest);
-  let categoryChatAnswer = document.createElement('p');
-  categoryChatAnswer.innerHTML = categoryInput;
-  chatHistory.appendChild(categoryChatAnswer);
+  let categoryAnswer = document.createElement('p');
+  categoryAnswer.innerHTML = categoryInput;
+  chatHistory.appendChild(categoryAnswer);
 
-  // let categoryResponse = 'Great, we have two types of drones available. The Bebop and the Bebop 2. Which would you like to learn about?';
-  // let categoryResponseBox = document.createElement('p');
-  // categoryResponseBox.innerHTML = categoryResponse;
-  // chatHistory.appendChild(categoryResponseBox);
-  //
-  // answers.placeholder = 'Type Bebop or Bebop 2';
-  $('#firstQuestion').hide();
-  $('#secondQuestion').show();
-  form.reset();
+  let categoryResponse = 'Great, we have two types of drones available. The Bebop and the Bebop 2. Which would you like to learn about?';
+  let categoryResponseBox = document.createElement('p');
+  categoryResponseBox.innerHTML = categoryResponse;
+  chatHistory.appendChild(categoryResponseBox);
+
+  let phoneOrDrone = document.getElementById('phoneOrDrone');
+  phoneOrDrone.placeholder = 'Type Bebop or Bebop 2';
+  $('#secondQuestion').hide();
+  // $('#secondQuestion').show();
+  secondQ.reset();
 }
 
 
